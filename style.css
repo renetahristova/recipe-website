@@ -13,7 +13,7 @@ body {
 }
 /*header*/
 header {
-  background-image: url(images/rsz_brooke-lark-hlncigvui4q-unsplash.jpg);
+  /* background-image: url(images/rsz_brooke-lark-hlncigvui4q-unsplash.jpg); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -235,6 +235,9 @@ footer {
   footer {
     font-size: 1.5rem;
   }
+}
+.hide {
+  display: none;
 }
 
 @media (max-width: 450px) {

@@ -19,71 +19,129 @@
       type="text/css"
       href="./slick-1.8.1/slick-1.8.1/slick/slick-theme.css"
     />
+
     <!-- custom css -->
     <link rel="stylesheet" href="style.css" />
     <title>Tasty Find</title>
   </head>
   <body>
-    <!-- header -->
-    <header>
-      <div class="glass-container">
+    <div class="root">
+      <!-- header -->
+      <header class="navigation">
+        <!-- <div class="glass-container">
         <h1>tasty find</h1>
-      </div>
-    </header>
-    <!-- suggestions -->
-    <section class="suggestions">
-      <h2>tasty <span>suggestions</span></h2>
-      <div class="box">
-        <i class="fas fa-pizza-slice" title="pizza"></i>
-        <i class="fas fa-hamburger" title="burger"></i>
-        <i class="fas fa-drumstick-bite" title="chicken"></i>
-        <i class="fas fa-fish" title="fish"></i>
-      </div>
-    </section>
-    <!-- search -->
-    <section class="search-bar">
-      <h2>tasty <span>search</span></h2>
-      <form id="form">
-        <input type="search" id="query" name="q" placeholder="Search..." />
-        <button class="search-button"><i class="fas fa-search"></i></button>
-      </form>
-    </section>
-    <!-- search result -->
-    <section class="search-result">
-      <q
-        >A recipe has no soul. You, as the cook, must bring soul to the
-        recipe.</q
-      >
-      <!--card-->
-    </section>
-    <!-- gallery -->
-    <h2>tasty <span>gallery</span></h2>
-    <section class="regular slider">
-      <div>
-        <img src="/images/g-1.jpg" />
-      </div>
-      <div>
-        <img src="/images/g-2.jpg" />
-      </div>
-      <div>
-        <img src="/images/g-3.jpg" />
-      </div>
-      <div>
-        <img src="/images/g-4.jpg" />
-      </div>
-      <div>
-        <img src="/images/g-5.jpg" />
-      </div>
-      <div>
-        <img src="/images/g-6.jpg" />
-      </div>
-    </section>
-    <!-- footer -->
-    <footer>
-      <h3>Lorem ipsum dolor sit amet.</h3>
-      <h4>Lorem ipsum dolor sit amet.</h4>
-    </footer>
-    <!-- slick slider -->
+      </div> -->
+      </header>
+
+      <!-- suggestions -->
+      <section class="suggestions">
+        <h2>tasty <span>suggestions</span></h2>
+        <div class="box">
+          <i class="fas fa-pizza-slice" title="pizza"></i>
+          <i class="fas fa-hamburger" title="burger"></i>
+          <i class="fas fa-drumstick-bite" title="chicken"></i>
+          <i class="fas fa-fish" title="fish"></i>
+        </div>
+      </section>
+      <!-- search -->
+      <section class="search-bar">
+        <h2>tasty <span>search</span></h2>
+        <form id="form">
+          <input type="search" id="query" name="q" placeholder="Search..." />
+          <button class="search-button"><i class="fas fa-search"></i></button>
+        </form>
+      </section>
+      <!-- search result -->
+      <section class="search-result">
+        <q
+          >A recipe has no soul. You, as the cook, must bring soul to the
+          recipe.</q
+        >
+        <!--card-->
+        <!--                    REGISTER FORM -->
+      </section>
+      <section class="register-section">
+        <h2>register</h2>
+        <form id="register-form">
+          <label for="email">email</label>
+          <input type="text" id="email" name="email" />
+          <label for="password">password</label>
+          <input type="password" id="password" name="password" />
+          <input type="submit" value="register" />
+        </form>
+      </section>
+      <!--                    REGISTER FORM END -->
+      <section class="add-recipe">
+        <h2>add new recipe</h2>
+        <form action="">
+          <label for=""></label>
+        </form>
+      </section>
+      <!-- gallery -->
+      <h2>tasty <span>gallery</span></h2>
+      <section class="regular slider">
+        <div>
+          <img src="/images/g-1.jpg" />
+        </div>
+        <div>
+          <img src="/images/g-2.jpg" />
+        </div>
+        <div>
+          <img src="/images/g-3.jpg" />
+        </div>
+        <div>
+          <img src="/images/g-4.jpg" />
+        </div>
+        <div>
+          <img src="/images/g-5.jpg" />
+        </div>
+        <div>
+          <img src="/images/g-6.jpg" />
+        </div>
+      </section>
+      <!-- footer -->
+      <footer>
+        <h3>Lorem ipsum dolor sit amet.</h3>
+        <h4>Lorem ipsum dolor sit amet.</h4>
+      </footer>
+    </div>
+    <script>
+      let registerForm = document.getElementById("register-form");
+      let baseUrl = "http://localhost:3030/";
+      let registerSection = document.querySelector(".register-section");
+
+      registerForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let data = new FormData(e.currentTarget);
+        console.log(data.get("email"));
+        console.log(data.get("password"));
+
+        fetch(`${baseUrl}users/register`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: data.get("email"),
+            password: data.get("password"),
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            saveToken(data.accessToken);
+            console.log(data);
+            registerSection.classList.add("hide");
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      });
+
+      function saveToken(token) {
+        localStorage.setItem("auth-token", token);
+      }
+    </script>
+    <!-- slick slider
     <script
       src="https://code.jquery.com/jquery-2.2.0.min.js"
       type="text/javascript"
@@ -118,7 +176,8 @@
           ],
         });
       });
-    </script>
+    </script> -->
     <script src="/script.js" type="module"></script>
+    <script src="/app.js" type="module"></script>
   </body>
 </html>
