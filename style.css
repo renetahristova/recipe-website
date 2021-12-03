@@ -11,6 +11,9 @@ body {
   --ruby-red: #a41623;
   --deep-champange: #ffd29d;
 }
+a {
+  color: white;
+}
 /*header*/
 header {
   background-image: url(images/rsz_brooke-lark-hlncigvui4q-unsplash.jpg);
@@ -18,11 +21,14 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 250px;
+  height: 200px;
 }
 header .glass-container {
   width: 100%;
   height: 100%;
+  margin: auto;
+}
+.heading-img {
   margin: auto;
 }
 .glass-container {
@@ -152,18 +158,10 @@ h2 span {
 .btn:hover a {
   color: var(--ruby-red);
 }
-q {
-  justify-self: center;
-  border: 2px solid var(--ruby-red);
-  border-radius: 30px;
-  padding: 30px;
-  color: var(--ruby-red);
-  font-size: 1.5rem;
-  box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
-}
+
 /*slider*/
 .slider {
-  width: 70%;
+  max-width: 70%;
   margin: 100px auto;
 }
 .slick-slide {
@@ -174,6 +172,7 @@ q {
 .slick-slide img {
   width: 100%;
   height: 300px;
+  object-fit: cover;
 }
 
 .slick-prev:before,
@@ -187,8 +186,6 @@ q {
 
 /*footer*/
 footer {
-  left: 0;
-  bottom: 0;
   height: 150px;
   width: 100%;
   background-color: var(--ruby-red);
